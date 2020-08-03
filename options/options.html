@@ -4,48 +4,60 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="options.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Options Page</title>
 </head>
 
 <body>
 <form>
-    <label for="firstname">Firstname</label>
-    <input type="text" id="firstname" placeholder="Max"/>
-    <br/>
+    <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input type="text" id="firstname" class="form-control" placeholder="Max"/>
+    </div>
 
-    <label for="lastname">Lastname</label>
-    <input type="text" id="lastname" placeholder="Mustermann"/>
-    <br/>
+    <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input type="text" id="lastname" class="form-control" placeholder="Mustermann"/>
+    </div>
 
-    <label for="dateOfBirth">Date of birth</label>
-    <input type="text" id="dateOfBirth" placeholder="01.01.1970"/>
-    <br/>
+    <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input type="text" id="dateOfBirth" class="form-control" placeholder="01.01.1970"/>
+    </div>
 
-    <label for="street">Street address</label>
-    <input type="text" id="street" placeholder="Musterstraße 11"/>
-    <br/>
+    <div class="form-group">
+        <label for="street">Street Address</label>
+        <input type="text" id="street" class="form-control" placeholder="Musterstraße 11"/>
+    </div>
 
-    <label for="postal-code">Postal code</label>
-    <input type="text" id="postal-code" placeholder="123456"/>
-    <br/>
+    <div class="form-group">
+        <label for="postal-code">Postal Code</label>
+        <input type="text" id="postal-code" class="form-control" placeholder="123456"/>
+    </div>
 
-    <label for="city">City</label>
-    <input type="text" id="city" placeholder="Musterstadt"/>
-    <br/>
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" class="form-control" placeholder="Musterstadt"/>
+    </div>
 
-    <label for="mobile">Mobile number</label>
-    <input type="text" id="mobile" placeholder="01234567890"/>
-    <br/>
+    <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input type="text" id="mobile" class="form-control" placeholder="01234567890"/>
+    </div>
 
-    <label for="email">Email address</label>
-    <input type="text" id="email" placeholder="Max.Mustermann@test"/>
-    <br/>
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="text" id="email" class="form-control" placeholder="Max.Mustermann@test"/>
+    </div>
 
-    <label for="card-number">Member card number</label>
-    <input type="text" id="card-number" placeholder="123456BTA"/>
-    <br/>
+    <div class="form-group">
+        <label for="card-number">Member Card Number</label>
+        <input type="text" id="card-number" class="form-control" placeholder="123456BTA"/>
+    </div>
 
-    <button type="submit">Save</button>
+    <button type="submit" class="btn btn-default">Save</button>
 </form>
 <script src="options.js"></script>
 </body>
