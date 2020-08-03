@@ -46,7 +46,7 @@
 
     function fillElement(supplier, value) {
         const element = supplier();
-        element.value = value;
+        element.value = value || '';
         element.dispatchEvent(new InputEvent('input'));
     }
 
