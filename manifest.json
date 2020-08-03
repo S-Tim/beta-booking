@@ -16,11 +16,6 @@
     "default_title": "Beta Booking",
     "default_popup": "popup/beta_booking.html"
   },
-  "web_accessible_resources": [
-    "beasts/frog.jpg",
-    "beasts/turtle.jpg",
-    "beasts/snake.jpg"
-  ],
   "options_ui": {
     "page": "options/options.html",
     "browser_style": true
