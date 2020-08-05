@@ -1,11 +1,12 @@
 html, body {
-    width: 200px;
+    width: 250px;
 }
 
 .hidden {
     display: none;
 }
 
-.row:hover {
-    background-color: #f1f1f1;
+.row {
+    margin-left: -10px !important;
+    margin-right: -10px !important;
 }

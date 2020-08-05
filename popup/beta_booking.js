@@ -1,3 +1,5 @@
+import {BOOKING_MODEL_KEYS} from "../model/booking_model.js";
+
 /**
  * Listen for clicks on the buttons, and send the appropriate message to
  * the content script in the page.
@@ -9,7 +11,7 @@ function listenForClicks() {
          * Fills the form using the values from the storage
          */
         function fillForm(tabs) {
-            const gettingItem = browser.storage.local.get(getModelKeys());
+            const gettingItem = browser.storage.local.get(BOOKING_MODEL_KEYS);
             gettingItem.then((res) => {
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: "fillForm",
@@ -37,20 +39,16 @@ function listenForClicks() {
          * Get the active tab,
          * then call "fillForm()" or "openOptionsPage()" as appropriate.
          */
-        if (e.target.classList.contains("fill-form")) {
+        if (e.target.id === "fill-form-button") {
             browser.tabs.query({active: true, currentWindow: true})
                 .then(fillForm)
                 .catch(reportError);
-        } else if (e.target.classList.contains("options")) {
+        } else if (e.target.id === "options-link") {
             browser.tabs.query({active: true, currentWindow: true})
                 .then(openOptionsPage)
                 .catch(reportError);
         }
     });
-
-    function getModelKeys() {
-        return ['firstname', 'lastname', 'dateOfBirth', 'street', 'postalCode', 'city', 'mobile', 'email', 'cardNumber'];
-    }
 }
 
 /**

@@ -4,27 +4,30 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="beta_booking.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="module" src="beta_booking.js"></script>
     <title>Beta-Booking</title>
 </head>
 
 <body>
 <div id="popup-content">
     <div class="container-fluid">
+        <div class="row justify-content-center"><h3 class="mt-2">Beta Booking</h3></div>
         <div class="row">
-            <h3 class="text-center fill-form">Fill Form</h3>
+            <button type="button" id="fill-form-button" class="btn btn-lg btn-outline-dark btn-block mb-2">Fill Form</button>
         </div>
         <div class="row">
-            <h3 class="text-center options">Options</h3>
+            <p>Or <a href id="options-link">configure</a> your information</p>
         </div>
     </div>
 </div>
 <div id="error-content" class="hidden">
     <p>Unable to fill the form, sorry.</p>
 </div>
-<script src="beta_booking.js"></script>
 </body>
-
 </html>

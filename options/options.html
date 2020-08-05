@@ -4,14 +4,18 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="options.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="module" src="options.js"></script>
     <title>Options Page</title>
 </head>
 
 <body>
-<form>
+<form class="ml-1 mr-1">
     <div class="form-group">
         <label for="firstname">Firstname</label>
         <input type="text" id="firstname" class="form-control" placeholder="Max"/>
@@ -49,7 +53,7 @@
 
     <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="text" id="email" class="form-control" placeholder="Max.Mustermann@test"/>
+        <input type="text" id="email" class="form-control" placeholder="Max.Mustermann@test.de"/>
     </div>
 
     <div class="form-group">
@@ -57,8 +61,7 @@
         <input type="text" id="card-number" class="form-control" placeholder="123456BTA"/>
     </div>
 
-    <button type="submit" class="btn btn-default">Save</button>
+    <button type="submit" class="btn btn-outline-dark">Save</button>
 </form>
-<script src="options.js"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+import {BOOKING_MODEL_KEYS} from "../model/booking_model.js";
+
 function saveOptions(e) {
     const model = buildModel();
 
@@ -6,7 +8,7 @@ function saveOptions(e) {
 }
 
 function restoreOptions() {
-    const gettingItem = browser.storage.local.get(getModelKeys());
+    const gettingItem = browser.storage.local.get(BOOKING_MODEL_KEYS);
     gettingItem.then((res) => {
         document.querySelector("#firstname").value = res.firstname || '';
         document.querySelector("#lastname").value = res.lastname || '';
@@ -32,10 +34,6 @@ function buildModel() {
     const cardNumber = document.querySelector("#card-number").value;
 
     return {firstname, lastname, dateOfBirth, street, postalCode, city, mobile, email, cardNumber};
-}
-
-function getModelKeys() {
-    return Object.getOwnPropertyNames(buildModel());
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
