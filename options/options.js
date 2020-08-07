@@ -3,7 +3,7 @@ import {BOOKING_MODEL_KEYS} from "../model/booking_model.js";
 function saveOptions(e) {
     const model = buildModel();
 
-    browser.storage.local.set(model);
+    browser.storage.local.set(model).then(() => showSaveSuccessfulAlert());
     e.preventDefault();
 }
 
@@ -34,6 +34,12 @@ function buildModel() {
     const cardNumber = document.querySelector("#card-number").value;
 
     return {firstname, lastname, dateOfBirth, street, postalCode, city, mobile, email, cardNumber};
+}
+
+function showSaveSuccessfulAlert() {
+    const alert = document.getElementById('saved-alert');
+    alert.classList.remove('d-none')
+    setTimeout(() => alert.classList.add('d-none'), 2000);
 }
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
