@@ -6,7 +6,6 @@ import {BOOKING_MODEL_KEYS} from "../model/booking_model.js";
  */
 function listenForClicks() {
     document.addEventListener("click", (e) => {
-
         /**
          * Fills the form using the values from the storage
          */
@@ -16,37 +15,34 @@ function listenForClicks() {
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: "fillForm",
                     bookingDetails: res
-                });
+                }).catch(err => reportError(err));
             });
-
         }
 
         /**
          * Open the options page for this add-on to configure the form values
          */
         function openOptionsPage() {
-            browser.runtime.openOptionsPage();
+            browser.runtime.openOptionsPage().catch(err => reportError(err))
         }
 
         /**
          * Just log the error to the console.
          */
         function reportError(error) {
-            console.error(`Could not fill form: ${error}`);
+            console.error(error);
         }
 
         /**
          * Get the active tab,
          * then call "fillForm()" or "openOptionsPage()" as appropriate.
          */
-        if (e.target.id === "fill-form-button") {
+        if (e.target["id"] === "fill-form-button") {
             browser.tabs.query({active: true, currentWindow: true})
                 .then(fillForm)
                 .catch(reportError);
-        } else if (e.target.id === "options-link") {
-            browser.tabs.query({active: true, currentWindow: true})
-                .then(openOptionsPage)
-                .catch(reportError);
+        } else if (e.target["id"] === "options-link") {
+            openOptionsPage();
         }
     });
 }
