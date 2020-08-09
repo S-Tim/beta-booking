@@ -52,8 +52,8 @@ function listenForClicks() {
  * Display the popup's error message, and hide the normal UI.
  */
 function reportExecuteScriptError(error) {
-    document.querySelector("#popup-content").classList.add("hidden");
-    document.querySelector("#error-content").classList.remove("hidden");
+    document.querySelector("#popup-content").classList.add("d-none");
+    document.querySelector("#error-content").classList.remove("d-none");
     console.error(`Failed to execute fill form content script: ${error.message}`);
 }
 

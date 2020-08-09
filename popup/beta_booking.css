@@ -2,10 +2,6 @@ html, body {
     width: 250px;
 }
 
-.hidden {
-    display: none;
-}
-
 .row {
     margin-left: -10px !important;
     margin-right: -10px !important;
