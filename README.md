@@ -24,7 +24,8 @@ and select a timeslot. Then click on the extension icon in the action bar and cl
 As of now this extension was only tested using Firefox.
 
 ### Firefox
-To test this extension locally, clone the repo then navigate to `about:debugging` in Firefox and select
+You can install this extension from the firefox extension store: https://addons.mozilla.org/en-US/firefox/addon/beta-booking/?src=search  
+Alternatively you can clone the repository and test it locally by navigating to `about:debugging` in Firefox and select
 *This Firefox* -> *Load Temporary Add-on...* and select the *manifest.json* file of this extension.
 
 ## Icons
