@@ -21,12 +21,18 @@ To book your timeslot navigate to the [booking page](https://boulderhalle-beta.d
 and select a timeslot. Then click on the extension icon in the action bar and click *Fill Form*.
 
 ## Browsers
-As of now this extension was only tested using Firefox.
+This extension was specifically tested on Firefox and Chrome.
+It was programmed for use in Firefox first, which is why Chrome uses the [Webextension Polyfill](https://github.com/mozilla/webextension-polyfill)
+provided by Mozilla.
 
 ### Firefox
 You can install this extension from the firefox extension store: https://addons.mozilla.org/en-US/firefox/addon/beta-booking/?src=search  
 Alternatively you can clone the repository and test it locally by navigating to `about:debugging` in Firefox and select
 *This Firefox* -> *Load Temporary Add-on...* and select the *manifest.json* file of this extension.
+
+### Chrome
+If you want to test this extension locally using Chrome, navigate to `chrome://extensions`, click on *Load Unpacked*
+and select the directory of this extension. 
 
 ## Icons
 The icons used are created by [Chanut-is](https://www.iconfinder.com/Chanut-is) and used under the [Creative Commons License](https://creativecommons.org/licenses/by/3.0/)
