@@ -14,7 +14,7 @@
      * Fills the booking form with the values from  the storage
      */
     function fillForm(bookingDetails) {
-        document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.selectedIndex = 5;
+        document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.selectedIndex = 13;
         document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.dispatchEvent(new MouseEvent('change'));
         document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.dispatchEvent(new InputEvent('input'));
 
