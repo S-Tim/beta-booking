@@ -14,9 +14,10 @@
      * Fills the booking form with the values from  the storage
      */
     function fillForm(bookingDetails) {
-        document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.selectedIndex = 13;
-        document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.dispatchEvent(new MouseEvent('change'));
-        document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild.dispatchEvent(new InputEvent('input'));
+        let tariffDropdown = document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild;
+        tariffDropdown.selectedIndex = findOptionIndex(tariffDropdown, 'Jahres');
+        tariffDropdown.dispatchEvent(new MouseEvent('change'));
+        tariffDropdown.dispatchEvent(new InputEvent('input'));
 
         setTimeout(() => {
             fillCardNumber(bookingDetails.cardNumber);
@@ -48,6 +49,21 @@
         const element = supplier();
         element.value = value || '';
         element.dispatchEvent(new InputEvent('input'));
+    }
+
+    /**
+     * Returns the index of the first option item that contains the given partial value or -1 if not found
+     * @param dropdown the select element of which the options are considered
+     * @param partialValue a string value that is part of (or exactly) the desired option
+     */
+    function findOptionIndex(dropdown, partialValue) {
+        for (let i = 0; i < dropdown.options.length; i++) {
+            let optionLabel = dropdown.options[i].label;
+            if (optionLabel.includes(partialValue)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
