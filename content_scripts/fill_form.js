@@ -33,6 +33,28 @@
             document.getElementById('drp-course-booking-client-terms-cb').checked = true;
             document.getElementById('drp-course-booking-data-processing-cb').checked = true;
         }, 250);
+
+        if (bookingDetails.firstnameParticipant2) {
+            setTimeout(() => {
+                fillAdditionalParticipant(
+                    bookingDetails.firstnameParticipant2,
+                    bookingDetails.lastnameParticipant2,
+                    bookingDetails.dateOfBirthParticipant2,
+                    bookingDetails.emailParticipant2,
+                    bookingDetails.cardNumberParticipant2);
+            }, 500);
+        }
+
+        if (bookingDetails.firstnameParticipant3) {
+            setTimeout(() => {
+                fillAdditionalParticipant(
+                    bookingDetails.firstnameParticipant3,
+                    bookingDetails.lastnameParticipant3,
+                    bookingDetails.dateOfBirthParticipant3,
+                    bookingDetails.emailParticipant3,
+                    bookingDetails.cardNumberParticipant3);
+            }, 1000);
+        }
     }
 
     const fillCardNumber = value => fillElement(() => document.querySelectorAll('[placeholder="Kartennummer*"]')[0], value);
@@ -44,6 +66,36 @@
     const fillCity = value => fillElement(() => document.querySelectorAll('[autocomplete="section-booking address-level2"]')[0], value);
     const fillMobile = value => fillElement(() => document.querySelectorAll('[autocomplete="section-booking mobile tel"]')[0], value);
     const fillMail = value => fillElement(() => document.querySelectorAll('[autocomplete="section-booking email"]')[0], value);
+
+    function fillAdditionalParticipant(firstname, lastname, dateOfBirth, email, cardNumber) {
+        // If there is no free slot for an additional participant then don't fill
+        let maximumNumberOfParticipantsReached = !!document.getElementsByClassName('drp-course-booking-reached-max-participant-count')[0];
+        if (maximumNumberOfParticipantsReached) {
+            return;
+        }
+
+        let addParticipantButton = document.getElementsByClassName('drp-course-booking-add-participant')[0];
+        addParticipantButton.click();
+
+        setTimeout(() => {
+            let participantList = document.getElementsByClassName('drp-course-booking-participant-item');
+            let lastParticipant = participantList[participantList.length - 1];
+
+            let tariffDropdown = lastParticipant.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild;
+            tariffDropdown.selectedIndex = findOptionIndex(tariffDropdown, 'Jahres');
+            tariffDropdown.dispatchEvent(new MouseEvent('change'));
+            tariffDropdown.dispatchEvent(new InputEvent('input'));
+
+            setTimeout(() => {
+                fillElement(() => lastParticipant.querySelectorAll('[placeholder="Kartennummer*"]')[0], cardNumber);
+                fillElement(() => lastParticipant.querySelectorAll('[autocomplete*="given-name"]')[0], firstname);
+                fillElement(() => lastParticipant.querySelectorAll('[autocomplete*="family-name"]')[0], lastname);
+                fillElement(() => lastParticipant.querySelectorAll('[autocomplete*="bday"]')[0], dateOfBirth);
+                fillElement(() => lastParticipant.querySelectorAll('[autocomplete*="email"]')[0], email);
+            }, 250);
+        }, 250);
+
+    }
 
     function fillElement(supplier, value) {
         const element = supplier();
