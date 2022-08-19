@@ -1,5 +1,3 @@
-import {BOOKING_MODEL_KEYS} from "../model/booking_model.js";
-
 /**
  * Listen for clicks on the buttons, and send the appropriate message to
  * the content script in the page.
@@ -10,11 +8,11 @@ function listenForClicks() {
          * Fills the form using the values from the storage
          */
         function fillForm(tabs) {
-            const gettingItem = browser.storage.local.get(BOOKING_MODEL_KEYS);
-            gettingItem.then((res) => {
+            const savedData = browser.storage.local.get("data");
+            savedData.then(sd => {
                 browser.tabs.sendMessage(tabs[0].id, {
                     command: "fillForm",
-                    bookingDetails: res
+                    bookingDetails: sd.data
                 }).catch(err => reportError(err));
             });
         }
@@ -63,6 +61,8 @@ function reportExecuteScriptError(error) {
  * If we couldn't inject the script, handle the error.
  */
 browser.tabs.executeScript({file: "/polyfill/browser-polyfill.js"}).catch(reportExecuteScriptError);
+// browser.tabs.executeScript({file: "/model/booking_model.js"}).catch(reportExecuteScriptError);
+// browser.tabs.executeScript({file: "/model/participant.js"}).catch(reportExecuteScriptError);
 browser.tabs.executeScript({file: "/content_scripts/fill_form.js"})
     .then(listenForClicks)
     .catch(reportExecuteScriptError);

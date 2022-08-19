@@ -9,11 +9,13 @@
     }
     window.hasRun = true;
 
+    console.log('Running fill_form.js content script');
 
     /**
      * Fills the booking form with the values from  the storage
      */
     function fillForm(bookingDetails) {
+
         let tariffDropdown = document.getElementsByClassName('drp-course-booking-tariff-select')[0].firstChild;
         tariffDropdown.selectedIndex = findOptionIndex(tariffDropdown, 'Jahres');
         tariffDropdown.dispatchEvent(new MouseEvent('change'));
@@ -34,26 +36,18 @@
             document.getElementById('drp-course-booking-data-processing-cb').checked = true;
         }, 250);
 
-        if (bookingDetails.firstnameParticipant2) {
-            setTimeout(() => {
-                fillAdditionalParticipant(
-                    bookingDetails.firstnameParticipant2,
-                    bookingDetails.lastnameParticipant2,
-                    bookingDetails.dateOfBirthParticipant2,
-                    bookingDetails.emailParticipant2,
-                    bookingDetails.cardNumberParticipant2);
-            }, 500);
-        }
-
-        if (bookingDetails.firstnameParticipant3) {
-            setTimeout(() => {
-                fillAdditionalParticipant(
-                    bookingDetails.firstnameParticipant3,
-                    bookingDetails.lastnameParticipant3,
-                    bookingDetails.dateOfBirthParticipant3,
-                    bookingDetails.emailParticipant3,
-                    bookingDetails.cardNumberParticipant3);
-            }, 1000);
+        for (let i = 0; i < bookingDetails.participants.length; i++) {
+            let participant = bookingDetails.participants[i];
+            if (participant.firstname) {
+                setTimeout(() => {
+                    fillAdditionalParticipant(
+                        participant.firstname,
+                        participant.lastname,
+                        participant.dateOfBirth,
+                        participant.email,
+                        participant.cardNumber);
+                }, (i + 1) * 500);
+            }
         }
     }
 
@@ -126,5 +120,4 @@
             fillForm(message.bookingDetails);
         }
     });
-
 })();

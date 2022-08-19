@@ -1,61 +1,66 @@
-import {BOOKING_MODEL_KEYS} from "../model/booking_model.js";
-
 function saveOptions(e) {
-    const model = buildModel();
+    const data = buildModel();
+    console.log('Saving data:', data);
 
-    browser.storage.local.set(model).then(() => showSaveSuccessfulAlert());
+    browser.storage.local.set({data}).then(() => showSaveSuccessfulAlert());
     e.preventDefault();
 }
 
 function restoreOptions() {
-    const gettingItem = browser.storage.local.get(BOOKING_MODEL_KEYS);
+    const gettingItem = browser.storage.local.get('data');
     gettingItem.then((res) => {
-        document.querySelector("#firstname").value = res.firstname || '';
-        document.querySelector("#lastname").value = res.lastname || '';
-        document.querySelector("#dateOfBirth").value = res.dateOfBirth || '';
-        document.querySelector("#street").value = res.street || '';
-        document.querySelector("#postal-code").value = res.postalCode || '';
-        document.querySelector("#city").value = res.city || '';
-        document.querySelector("#mobile").value = res.mobile || '';
-        document.querySelector("#email").value = res.email || '';
-        document.querySelector("#card-number").value = res.cardNumber || '';
+        console.log('Retrieved data:', res);
+        let model = res.data;
 
-        document.querySelector("#firstnameParticipant2").value = res.firstnameParticipant2 || '';
-        document.querySelector("#lastnameParticipant2").value = res.lastnameParticipant2 || '';
-        document.querySelector("#dateOfBirthParticipant2").value = res.dateOfBirthParticipant2 || '';
-        document.querySelector("#emailParticipant2").value = res.emailParticipant2 || '';
-        document.querySelector("#card-numberParticipant2").value = res.cardNumberParticipant2 || '';
+        setValuedById('firstname', model.firstname);
+        setValuedById('lastname', model.lastname);
+        setValuedById('dateOfBirth', model.dateOfBirth);
+        setValuedById('street', model.street);
+        setValuedById('postalCode', model.postalCode);
+        setValuedById('city', model.city);
+        setValuedById('mobile', model.mobile);
+        setValuedById('email', model.email);
+        setValuedById('cardNumber', model.cardNumber);
 
-        document.querySelector("#firstnameParticipant3").value = res.firstnameParticipant3 || '';
-        document.querySelector("#lastnameParticipant3").value = res.lastnameParticipant3 || '';
-        document.querySelector("#dateOfBirthParticipant3").value = res.dateOfBirthParticipant3 || '';
-        document.querySelector("#emailParticipant3").value = res.emailParticipant3 || '';
-        document.querySelector("#card-numberParticipant3").value = res.cardNumberParticipant3 || '';
+        let participant2 = model.participants[0] || {};
+        setValuedById('firstnameParticipant2', participant2.firstname);
+        setValuedById('lastnameParticipant2', participant2.lastname);
+        setValuedById('dateOfBirthParticipant2', participant2.dateOfBirth);
+        setValuedById('emailParticipant2', participant2.email);
+        setValuedById('cardNumberParticipant2', participant2.cardNumber);
+
+        let participant3 = model.participants[1] || {};
+        setValuedById('firstnameParticipant3', participant3.firstname);
+        setValuedById('lastnameParticipant3', participant3.lastname);
+        setValuedById('dateOfBirthParticipant3', participant3.dateOfBirth);
+        setValuedById('emailParticipant3', participant3.email);
+        setValuedById('cardNumberParticipant3', participant3.cardNumber);
     });
 }
 
 function buildModel() {
-    const firstname = document.querySelector("#firstname").value;
-    const lastname = document.querySelector("#lastname").value;
-    const dateOfBirth = document.querySelector("#dateOfBirth").value;
-    const street = document.querySelector("#street").value;
-    const postalCode = document.querySelector("#postal-code").value;
-    const city = document.querySelector("#city").value;
-    const mobile = document.querySelector("#mobile").value;
-    const email = document.querySelector("#email").value;
-    const cardNumber = document.querySelector("#card-number").value;
+    const firstname = getValueById('firstname');
+    const lastname = getValueById('lastname');
+    const dateOfBirth = getValueById('dateOfBirth');
+    const street = getValueById('street');
+    const postalCode = getValueById('postalCode');
+    const city = getValueById('city');
+    const mobile = getValueById('mobile');
+    const email = getValueById('email');
+    const cardNumber = getValueById('cardNumber');
 
-    const firstnameParticipant2 = document.querySelector("#firstnameParticipant2").value;
-    const lastnameParticipant2 = document.querySelector("#lastnameParticipant2").value;
-    const dateOfBirthParticipant2 = document.querySelector("#dateOfBirthParticipant2").value;
-    const emailParticipant2 = document.querySelector("#emailParticipant2").value;
-    const cardNumberParticipant2 = document.querySelector("#card-numberParticipant2").value;
+    const firstnameParticipant2 = getValueById('firstnameParticipant2');
+    const lastnameParticipant2 = getValueById('lastnameParticipant2');
+    const dateOfBirthParticipant2 = getValueById('dateOfBirthParticipant2');
+    const emailParticipant2 = getValueById('emailParticipant2');
+    const cardNumberParticipant2 = getValueById('cardNumberParticipant2');
 
-    const firstnameParticipant3 = document.querySelector("#firstnameParticipant3").value;
-    const lastnameParticipant3 = document.querySelector("#lastnameParticipant3").value;
-    const dateOfBirthParticipant3 = document.querySelector("#dateOfBirthParticipant3").value;
-    const emailParticipant3 = document.querySelector("#emailParticipant3").value;
-    const cardNumberParticipant3 = document.querySelector("#card-numberParticipant3").value;
+    const firstnameParticipant3 = getValueById('firstnameParticipant3');
+    const lastnameParticipant3 = getValueById('lastnameParticipant3');
+    const dateOfBirthParticipant3 = getValueById('dateOfBirthParticipant3');
+    const emailParticipant3 = getValueById('emailParticipant3');
+    const cardNumberParticipant3 = getValueById('cardNumberParticipant3');
+
 
     return {
         firstname,
@@ -67,17 +72,31 @@ function buildModel() {
         mobile,
         email,
         cardNumber,
-        firstnameParticipant2,
-        lastnameParticipant2,
-        dateOfBirthParticipant2,
-        emailParticipant2,
-        cardNumberParticipant2,
-        firstnameParticipant3,
-        lastnameParticipant3,
-        dateOfBirthParticipant3,
-        emailParticipant3,
-        cardNumberParticipant3
+        participants: [
+            {
+                firstname: firstnameParticipant2,
+                lastname: lastnameParticipant2,
+                dateOfBirth: dateOfBirthParticipant2,
+                email: emailParticipant2,
+                cardNumber: cardNumberParticipant2
+            },
+            {
+                firstname: firstnameParticipant3,
+                lastname: lastnameParticipant3,
+                dateOfBirth: dateOfBirthParticipant3,
+                email: emailParticipant3,
+                cardNumber: cardNumberParticipant3
+            },
+        ],
     };
+}
+
+function getValueById(id) {
+    return document.querySelector(`#${id}`).value || undefined;
+}
+
+function setValuedById(id, value) {
+    document.querySelector(`#${id}`).value = value || '';
 }
 
 function showSaveSuccessfulAlert() {
